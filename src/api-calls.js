@@ -49,8 +49,22 @@ function cancelBooking(bookingId) {
     .catch(error => console.log('this errror', error))
 }
 
+function getUser(id) {
+    return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(Error)
+        } else {
+            console.log('resp', response)
+            return response.json()
+        }
+    })
+    .catch(error => console.log('this is an error', error))
+}
+
 export {
     getAllData,
     addBooking,
-    cancelBooking
+    cancelBooking,
+    getUser
 }

@@ -30,9 +30,9 @@
     </header>
     <section class="content">
       <nav class="nav-bar">
-        <button class="buttons" id="my-bookings-button">My Bookings</button>
-        <button class="buttons" id="book-a-room-button">Book a Room</button>
-        <article class="total-spent hidden"></article>
+        <button class="buttons hidden" id="my-bookings-button">My Bookings</button>
+        <button class="buttons hidden" id="book-a-room-button">Book a Room</button>
+        <article class="total-spent hidden" tabindex="0"></article>
         <form class="date-form hidden">
           <label for="date">Select a Date:</label>
           <input class="input-forms" type="date" id="date" name="date" />
@@ -57,6 +57,15 @@
       </nav>
       <main class="main-section">
         <section class="bookings-display">
+          <h2 class="welcome-header">Welcome to Overlook Hotel</h2>
+          <form class="login-form">
+            <h2 id="login-heading">Login</h2>
+            <label for="username">Username:</label>
+            <input class="input-forms" type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input class="input-forms" type="password" id="password" name="password" required>
+            <input class="submit-button" id="user-login-button" type="submit" value="Login">
+        </form>
           <article class="content-display"></article>
           <h2 class="hidden" id="booked-text">Your Room Has Been Booked</h2>
           <h2 class="hidden" id="canceled-text">Your Room Has Been Canceled</h2>
