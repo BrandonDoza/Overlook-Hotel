@@ -115,6 +115,24 @@ bookingDisplay.addEventListener("click", (event) => {
   }
 });
 
+bookingDisplay.addEventListener("keydown", (event) => {
+    if (event.target.classList.contains("user-booked-card") && event.key === 'Enter') {
+      currentBooking = findBooking(event.target.id, customer.bookings);
+      const bookingToDisplay = renderSingleBooking(currentBooking);
+      bookingDisplay.innerHTML = bookingToDisplay;
+      bookThisRoomButton.innerText = "Book Room";
+      showElements([cancelBookingButton]);
+      hideElements([bookThisRoomButton]);
+    } else if (event.target.classList.contains("available-booking-card") && event.key === 'Enter') {
+      currentBooking = findBooking(event.target.id, bookingsByDate);
+      const bookingToDisplay = renderSingleBooking(currentBooking);
+      bookingDisplay.innerHTML = bookingToDisplay;
+      bookThisRoomButton.innerText = "Book Room";
+      showElements([bookThisRoomButton]);
+      hideElements([cancelBookingButton]);
+    }
+  });
+
 bookThisRoomButton.addEventListener("click", () => {
   date = date.split("-").join("/");
   let bookingToAdd = {
@@ -128,7 +146,7 @@ bookThisRoomButton.addEventListener("click", () => {
       const newBooking = response.newBooking;
       allData[2].bookings.push(newBooking);
       showElements([bookedText, cancelBookingButton]);
-      hideElements([bookThisRoomButton]);
+      hideElements([bookThisRoomButton, canceledText]);
       return getAllData();
     })
     .then((apiData) => {
@@ -198,7 +216,7 @@ function hideElements(elements) {
 function renderSingleBooking(booking) {
     console.log("thisbooking", booking);
     const singleBooking = `<div class="single-booking-display">
-      <h2>${booking.roomType.toUpperCase()}</h2>
+      <h1>${booking.roomType.toUpperCase()}</h1>
       <article>Number of Beds: ${booking.numBeds}</article>
               <article>Bed Size: ${booking.bedSize}</article>
               <article>Cost Per Night: ${booking.costPerNight}</article>
@@ -224,8 +242,8 @@ function getRandomUser(users) {
 
 function createUserBookedRoomsCard(bookings) {
   const userBookingsCards = bookings.map((booking, i) => {
-    let card = `<div class="user-booked-card" id=${i}>
-        <h3>${booking.roomType.toUpperCase()} - ${booking.bedSize.toUpperCase()} BED</h3>
+    let card = `<div class="user-booked-card" id=${i} tabindex='0'>
+        <h2>${booking.roomType.toUpperCase()} - ${booking.bedSize.toUpperCase()} BED</h2>
         <article>Number of Beds: ${booking.numBeds}</article>
         <article>You have booked this on ${booking.dateBooked} at a cost of $${
       booking.costPerNight
@@ -238,8 +256,8 @@ function createUserBookedRoomsCard(bookings) {
 
 function createAvailableBookingsCard(bookings) {
   const availableBookingCards = bookings.map((booking, i) => {
-    let card = `<div class="available-booking-card" id=${i}>
-            <h3>${booking.roomType.toUpperCase()}</h3>
+    let card = `<div class="available-booking-card" id=${i} tabindex='0'>
+            <h2 tabindex='0'>${booking.roomType.toUpperCase()}</h2>
             <article>Number of Beds: ${booking.numBeds}</article>
             <article>Bed Size: ${booking.bedSize}</article>
             <article>Cost Per Night: ${booking.costPerNight}</article>
