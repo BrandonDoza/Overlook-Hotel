@@ -11,7 +11,8 @@ const bookARoomButton = document.getElementById("book-a-room-button");
 const bookThisRoomButton = document.getElementById("book-room-button");
 const cancelBookingButton = document.getElementById("cancel-room-button");
 const userLoginButton = document.getElementById("user-login-button");
-const bookingBackButton = document.getElementById("back-from-bookings-button");
+const userBookingsBackButton = document.getElementById("back-from-bookings-button");
+const searchBookingsBackButton = document.getElementById("back-from-search-button");
 const dateInput = document.getElementById("date");
 const roomTypeInput = document.getElementById("room-type");
 const userNameInput = document.getElementById("username");
@@ -66,13 +67,15 @@ myBookingsButton.addEventListener("click", () => {
 
 bookARoomButton.addEventListener("click", () => {
   showElements([dateForm]);
-  hideElements([totalSpentDisplay, bookedText, bookingBackButton]);
+  hideElements([totalSpentDisplay, bookedText, userBookingsBackButton]);
 });
 
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
   bookingDisplay.innerHTML = "";
+  welcomeHeader.innerText = "One Moment While We Retrieve Bookings";
   showElements([filterByRoomTypeDisplay]);
+  hideElements([bookThisRoomButton, cancelBookingButton]);
   const dateInput = document.getElementById("date");
   date = dateInput.value.toString();
   let bookings = allData[2].bookings;
@@ -80,30 +83,53 @@ submitButton.addEventListener("click", function (event) {
   bookingsByDate = getAvailableRooms(bookings, rooms, date);
   let bookingCards = createAvailableBookingsCard(bookingsByDate);
   //   let bookingCards = "We apologize, but unfortunately there are no rooms for your selected date";
-  populateContentDisplay(bookingCards);
-  dateForm.reset();
+  setTimeout(() => {
+    populateContentDisplay(bookingCards);
+    dateForm.reset();
+    welcomeHeader.innerText = "";
+  }, 100) 
 });
 
 filterSearchButton.addEventListener("click", (event) => {
   event.preventDefault();
   bookingDisplay.innerHTML = "";
+  welcomeHeader.innerText = "One Moment While We Retrieve Bookings";
+  hideElements([bookThisRoomButton, cancelBookingButton]);
   const filteredType = document.getElementById("room-type");
   const roomType = filteredType.value;
   filteredBookings = filterAvailableRoomsByType(bookingsByDate, roomType);
   let bookingCards = createAvailableBookingsCard(filteredBookings);
   //   let bookingCards = 'We apologize, but unfortunately there are no rooms by that type available';
-  populateContentDisplay(bookingCards);
+  setTimeout(() => {
+    populateContentDisplay(bookingCards);
+    welcomeHeader.innerText = "";
+  }, 100) 
   filterByRoomTypeDisplay.reset();
 });
 
-bookingBackButton.addEventListener('click', () => {
+userBookingsBackButton.addEventListener('click', () => {
     bookingDisplay.innerHTML = "";
     let bookings = allData[2].bookings;
     let rooms = allData[1].rooms;
     customer.bookings = getAllCustomerRoomBookings(customer, bookings, rooms);
     let bookingCards = createUserBookedRoomsCard(customer.bookings);
     populateContentDisplay(bookingCards);
-    hideElements([bookingBackButton]);
+    hideElements([userBookingsBackButton, cancelBookingButton, bookThisRoomButton]);
+});
+
+searchBookingsBackButton.addEventListener('click', () => {
+    bookingDisplay.innerHTML = "";
+    welcomeHeader.innerText = "One Moment While We Retrieve Bookings";
+    let bookings = allData[2].bookings;
+  let rooms = allData[1].rooms;
+  bookingsByDate = getAvailableRooms(bookings, rooms, date);
+  let bookingCards = createAvailableBookingsCard(bookingsByDate);
+  //   let bookingCards = "We apologize, but unfortunately there are no rooms for your selected date";
+  setTimeout(() => {
+    populateContentDisplay(bookingCards);
+    welcomeHeader.innerText = "";
+  }, 100)
+    hideElements([searchBookingsBackButton, cancelBookingButton, bookThisRoomButton]);
 })
 
 dateInput.addEventListener("input", () => {
@@ -120,14 +146,14 @@ bookingDisplay.addEventListener("click", (event) => {
     const bookingToDisplay = renderSingleBooking(currentBooking);
     bookingDisplay.innerHTML = bookingToDisplay;
     bookThisRoomButton.innerText = "Book Room";
-    showElements([cancelBookingButton, bookingBackButton]);
+    showElements([cancelBookingButton, userBookingsBackButton]);
     hideElements([bookThisRoomButton]);
   } else if (event.target.classList.contains("available-booking-card")) {
     currentBooking = findBooking(event.target.id, bookingsByDate);
     const bookingToDisplay = renderSingleBooking(currentBooking);
     bookingDisplay.innerHTML = bookingToDisplay;
     bookThisRoomButton.innerText = "Book Room";
-    showElements([bookThisRoomButton]);
+    showElements([bookThisRoomButton, searchBookingsBackButton]);
     hideElements([cancelBookingButton]);
   }
 });
@@ -214,7 +240,7 @@ userLoginButton.addEventListener("click", (event) => {
       myBookingsButton.focus();
       setTimeout(() => {
         hideElements([loginForm]);
-      }, 2000);
+      }, 1000);
     });
   } else {
     loginHeading.innerText =
