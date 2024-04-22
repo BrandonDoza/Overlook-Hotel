@@ -66,6 +66,7 @@ myBookingsButton.addEventListener("click", () => {
   ]);
   let totalSpentByCustomer = getTotalCostForAllBookings(customer.bookings);
   totalSpentDisplay.innerText = `You have spent a total of $${totalSpentByCustomer} on ${customer.bookings.length} rooms`;
+  totalSpentDisplay.ariaLabel = `You have spent a total of $${totalSpentByCustomer} on ${customer.bookings.length} rooms`
 });
 
 bookARoomButton.addEventListener("click", () => {
@@ -299,11 +300,11 @@ function hideElements(elements) {
 
 function renderSingleBooking(booking) {
   console.log("thisbooking", booking);
-  const singleBooking = `<div class="single-booking-display">
+  const singleBooking = `<div class="single-booking-display" tabindex='0' role="region">
       <h1>${booking.roomType.toUpperCase()}</h1>
-      <article>Number of Beds: ${booking.numBeds}</article>
-              <article>Bed Size: ${booking.bedSize}</article>
-              <article>Cost Per Night: ${booking.costPerNight}</article>
+      <article aria-label="Number of Beds: ${booking.numBeds}">Number of Beds: ${booking.numBeds}</article>
+              <article aria-label="Bed Size: ${booking.bedSize}">Bed Size: ${booking.bedSize}</article>
+              <article aria-label="Cost Per Night: ${booking.costPerNight}">Cost Per Night: ${booking.costPerNight}</article>
               <img src="${generateRandomImage(
                 images
               )}" alt="hotel room with bed">
@@ -322,10 +323,12 @@ function disableButton(field, button) {
 //<><>functions<><>
 function createUserBookedRoomsCard(bookings) {
   const userBookingsCards = bookings.map((booking, i) => {
-    let card = `<div class="user-booked-card" id=${i} tabindex='0'>
+    let card = `<div class="user-booked-card" id=${i} tabindex='0' role="region">
         <h2>${booking.roomType.toUpperCase()} - ${booking.bedSize.toUpperCase()} BED</h2>
-        <article>Number of Beds: ${booking.numBeds}</article>
-        <article>You have booked this on ${booking.dateBooked} at a cost of $${
+        <article aria-label="Number of Beds: ${booking.numBeds}">Number of Beds: ${booking.numBeds}</article>
+        <article aria-label="You have booked this on ${booking.dateBooked} at a cost of $${
+            booking.costPerNight
+          } per night">You have booked this on ${booking.dateBooked} at a cost of $${
       booking.costPerNight
     } per night</article>
 </div>`;
@@ -336,11 +339,11 @@ function createUserBookedRoomsCard(bookings) {
 
 function createAvailableBookingsCard(bookings) {
   const availableBookingCards = bookings.map((booking, i) => {
-    let card = `<div class="available-booking-card" id=${i} tabindex='0'>
-            <h2 tabindex='0'>${booking.roomType.toUpperCase()}</h2>
-            <article>Number of Beds: ${booking.numBeds}</article>
-            <article>Bed Size: ${booking.bedSize}</article>
-            <article>Cost Per Night: ${booking.costPerNight}</article>
+    let card = `<div class="available-booking-card" id=${i} tabindex='0' role="region">
+            <h2>${booking.roomType.toUpperCase()}</h2>
+            <article aria-label="Number of Beds: ${booking.numBeds}">Number of Beds: ${booking.numBeds}</article>
+            <article aria-label="Bed Size: ${booking.bedSize}">Bed Size: ${booking.bedSize}</article>
+            <article aria-label="Cost Per Night: ${booking.costPerNight}">Cost Per Night: ${booking.costPerNight}</article>
     </div>`;
     return card;
   });
