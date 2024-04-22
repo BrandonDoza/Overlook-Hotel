@@ -63,6 +63,7 @@ myBookingsButton.addEventListener("click", () => {
     cancelBookingButton,
     bookedText,
     canceledText,
+    searchBookingsBackButton
   ]);
   let totalSpentByCustomer = getTotalCostForAllBookings(customer.bookings);
   totalSpentDisplay.innerText = `You have spent a total of $${totalSpentByCustomer} on ${customer.bookings.length} rooms`;
@@ -203,7 +204,7 @@ bookThisRoomButton.addEventListener("click", () => {
       console.log(response);
       const newBooking = response.newBooking;
       allData[2].bookings.push(newBooking);
-      showElements([bookedText, cancelBookingButton]);
+      showElements([bookedText]);
       hideElements([bookThisRoomButton, canceledText]);
       return getAllData();
     })
