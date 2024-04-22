@@ -329,7 +329,7 @@ function createUserBookedRoomsCard(bookings) {
         <article aria-label="Number of Beds: ${booking.numBeds}">Number of Beds: ${booking.numBeds}</article>
         <article aria-label="You have booked this on ${booking.dateBooked} at a cost of $${
             booking.costPerNight
-          } per night">You have booked this on ${booking.dateBooked} at a cost of $${
+          } per night">You booked this on ${booking.dateBooked} at a cost of $${
       booking.costPerNight
     } per night</article>
 </div>`;
