@@ -10,8 +10,11 @@ const myBookingsButton = document.getElementById("my-bookings-button");
 const bookARoomButton = document.getElementById("book-a-room-button");
 const bookThisRoomButton = document.getElementById("book-room-button");
 const cancelBookingButton = document.getElementById("cancel-room-button");
+const userLoginButton = document.getElementById('user-login-button');
 const dateInput = document.getElementById("date");
 const roomTypeInput = document.getElementById("room-type");
+const userNameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
 const bookedText = document.getElementById("booked-text");
 const canceledText = document.getElementById("canceled-text");
 const bookingDisplay = document.querySelector(".content-display");
@@ -169,6 +172,7 @@ cancelBookingButton.addEventListener("click", () => {
       allData = apiData;
     });
 });
+
 
 //<><>event handlers<><>
 export const load = () => {

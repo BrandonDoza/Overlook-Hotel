@@ -57,6 +57,15 @@
       </nav>
       <main class="main-section">
         <section class="bookings-display">
+          <h2>Welcome to Overlook Hotel</h2>
+          <form class="login-form" action="/login" method="post">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input class="input-forms" type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input class="input-forms" type="password" id="password" name="password" required>
+            <input class="submit-button" id="user-login-button" type="submit" value="Login">
+        </form>
           <article class="content-display"></article>
           <h2 class="hidden" id="booked-text">Your Room Has Been Booked</h2>
           <h2 class="hidden" id="canceled-text">Your Room Has Been Canceled</h2>
