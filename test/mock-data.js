@@ -100,8 +100,8 @@ export const userBookings = [
     bedSize: "queen",
     dateBooked: "2022/04/22",
     costPerNight: 358.4,
-    id: 'aaa',
-    roomNumber: 10
+    id: "aaa",
+    roomNumber: 10,
   },
   {
     roomType: "suite",
@@ -109,22 +109,22 @@ export const userBookings = [
     bedSize: "queen",
     dateBooked: "2022/01/10",
     costPerNight: 340.17,
-    id: 'eee',
-    roomNumber: 14
+    id: "eee",
+    roomNumber: 14,
   },
 ];
 
-export const bookedRoomsForSadPath =[
-    {
-        id: "ccc",
-        userID: 3,
-        date: "2022/01/10",
-        roomNumber: 12,
-      },
-      {
-        id: "ddd",
-        userID: 3,
-        date: "2022/01/10",
-        roomNumber: 13,
-      }
-]
+export const bookedRoomsForSadPath = [
+  {
+    id: "ccc",
+    userID: 3,
+    date: "2022/01/10",
+    roomNumber: 12,
+  },
+  {
+    id: "ddd",
+    userID: 3,
+    date: "2022/01/10",
+    roomNumber: 13,
+  },
+];
