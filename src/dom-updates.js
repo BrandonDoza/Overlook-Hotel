@@ -11,6 +11,7 @@ const bookARoomButton = document.getElementById("book-a-room-button");
 const bookThisRoomButton = document.getElementById("book-room-button");
 const cancelBookingButton = document.getElementById("cancel-room-button");
 const userLoginButton = document.getElementById("user-login-button");
+const bookingBackButton = document.getElementById("back-from-bookings-button");
 const dateInput = document.getElementById("date");
 const roomTypeInput = document.getElementById("room-type");
 const userNameInput = document.getElementById("username");
@@ -65,7 +66,7 @@ myBookingsButton.addEventListener("click", () => {
 
 bookARoomButton.addEventListener("click", () => {
   showElements([dateForm]);
-  hideElements([totalSpentDisplay, bookedText]);
+  hideElements([totalSpentDisplay, bookedText, bookingBackButton]);
 });
 
 submitButton.addEventListener("click", function (event) {
@@ -95,6 +96,16 @@ filterSearchButton.addEventListener("click", (event) => {
   filterByRoomTypeDisplay.reset();
 });
 
+bookingBackButton.addEventListener('click', () => {
+    bookingDisplay.innerHTML = "";
+    let bookings = allData[2].bookings;
+    let rooms = allData[1].rooms;
+    customer.bookings = getAllCustomerRoomBookings(customer, bookings, rooms);
+    let bookingCards = createUserBookedRoomsCard(customer.bookings);
+    populateContentDisplay(bookingCards);
+    hideElements([bookingBackButton]);
+})
+
 dateInput.addEventListener("input", () => {
   disableButton(dateInput, submitButton);
 });
@@ -109,7 +120,7 @@ bookingDisplay.addEventListener("click", (event) => {
     const bookingToDisplay = renderSingleBooking(currentBooking);
     bookingDisplay.innerHTML = bookingToDisplay;
     bookThisRoomButton.innerText = "Book Room";
-    showElements([cancelBookingButton]);
+    showElements([cancelBookingButton, bookingBackButton]);
     hideElements([bookThisRoomButton]);
   } else if (event.target.classList.contains("available-booking-card")) {
     currentBooking = findBooking(event.target.id, bookingsByDate);
@@ -278,12 +289,6 @@ function disableButton(field, button) {
 }
 
 //<><>functions<><>
-// function getRandomUser(users) {
-//   let randomIndex = Math.floor(Math.random() * users.length);
-//   let randomUser = users[randomIndex];
-//   return randomUser;
-// }
-
 function createUserBookedRoomsCard(bookings) {
   const userBookingsCards = bookings.map((booking, i) => {
     let card = `<div class="user-booked-card" id=${i} tabindex='0'>
