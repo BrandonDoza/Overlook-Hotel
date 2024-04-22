@@ -330,10 +330,12 @@ function removeBooking(bookings, currentBooking) {
 }
 
 function getUserIdForLogin(username) {
-  const prefix = "customer";
-  if (username.includes(prefix) && username.length > prefix.length) {
-    const idStr = username.slice(prefix.length);
-    const id = parseInt(idStr, 10);
-    return id;
+    const prefix = "customer";
+    if (username.includes(prefix) && username.length > prefix.length) {
+      const idStr = username.slice(prefix.length);
+      const id = parseInt(idStr, 10);
+      if (id <= allData[0].customers.length) {
+          return id
+        } 
+    }
   }
-}
