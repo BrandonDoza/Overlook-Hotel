@@ -22,7 +22,8 @@ In the terminal run `npm test`
 
 ## App Preview:
 
-![Screen Recording 2024-04-22 at 5 57 05 PM](https://github.com/BrandonDoza/Overlook-Hotel/assets/141676838/ebf54497-f2a0-4d01-83d0-221d02b15a8a)
+
+![Screen Recording 2024-04-22 at 5 57 05 PM (1)](https://github.com/BrandonDoza/Overlook-Hotel/assets/141676838/1c5c769a-0675-4095-8126-3a8bc63ef894)
 
 
 ## Context:
