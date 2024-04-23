@@ -22,12 +22,12 @@ In the terminal run `npm test`
 
 ## App Preview:
 
+![Screen Recording 2024-04-22 at 5 57 05 PM (2)](https://github.com/BrandonDoza/Overlook-Hotel/assets/141676838/c075e57c-9a8a-4d8c-8000-a5460dd1648e)
 
-![Screen Recording 2024-04-22 at 5 57 05 PM (1)](https://github.com/BrandonDoza/Overlook-Hotel/assets/141676838/1c5c769a-0675-4095-8126-3a8bc63ef894)
 
 
 ## Context:
-The basis of this project was to build a web application that allows users to search for hotel rooms by specific date and type, book the rooms they would like to, view all of their bookings, and cancel bookings as well. This project was a a week long project. I am approximately 3 months into my coding journey at Turing. Total project time was approximately 30 hours.
+The basis of this project was to build a web application that allows users to search for hotel rooms by specific date and type, book the rooms they would like to, view all of their bookings, and cancel bookings as well. This project was a week long project. I am approximately 3 months into my coding journey at Turing. Total project time was approximately 30 hours.
 
 ## Contributors:
 Brandon Doza: https://github.com/BrandonDoza
